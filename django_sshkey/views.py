@@ -30,7 +30,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods, require_GET
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render
 from django.template import RequestContext
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -76,10 +76,8 @@ def lookup(request):
 @require_GET
 def userkey_list(request):
   userkey_list = UserKey.objects.filter(user=request.user)
-  return render_to_response(
-    'sshkey/userkey_list.html',
-    {'userkey_list': userkey_list, 'allow_edit': settings.SSHKEY_ALLOW_EDIT},
-    context_instance=RequestContext(request),
+  return render(request, 'sshkey/userkey_list.html',
+    context={'userkey_list': userkey_list, 'allow_edit': settings.SSHKEY_ALLOW_EDIT}
   )
 
 
@@ -101,11 +99,8 @@ def userkey_add(request):
       return HttpResponseRedirect(url)
   else:
     form = UserKeyForm()
-  return render_to_response(
-    'sshkey/userkey_detail.html',
-    {'form': form, 'action': 'add'},
-    context_instance=RequestContext(request),
-  )
+  return render(request, 'sshkey/userkey_detail.html',
+    context={'form': form, 'action': 'add'})
 
 
 @login_required
@@ -129,11 +124,8 @@ def userkey_edit(request, pk):
       return HttpResponseRedirect(url)
   else:
     form = UserKeyForm(instance=userkey)
-  return render_to_response(
-    'sshkey/userkey_detail.html',
-    {'form': form, 'action': 'edit'},
-    context_instance=RequestContext(request),
-  )
+  return render(request, 'sshkey/userkey_detail.html',
+    context={'form': form, 'action': 'edit'})
 
 
 @login_required
