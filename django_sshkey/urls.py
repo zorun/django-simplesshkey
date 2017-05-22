@@ -32,10 +32,11 @@ from django.conf.urls import url
 
 from . import views
 
+app_name = "django_sshkey"
 urlpatterns = [
-  url(r'^lookup$', views.lookup),  # noqa
-  url(r'^$', views.userkey_list),
-  url(r'^add$', views.userkey_add),
-  url(r'^(?P<pk>\d+)$', views.userkey_edit),
-  url(r'^(?P<pk>\d+)/delete$', views.userkey_delete),
+  url(r'^lookup$', views.lookup, name='lookup'),  # noqa
+  url(r'^$', views.userkey_list, name='userkey_list'),
+  url(r'^add$', views.userkey_add, name='userkey_add'),
+  url(r'^(?P<pk>\d+)$', views.userkey_edit, name='userkey_edit'),
+  url(r'^(?P<pk>\d+)/delete$', views.userkey_delete, name='userkey_delete'),
 ]

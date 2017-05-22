@@ -134,7 +134,7 @@ def send_email_add_key(sender, instance, **kwargs):
   if request:
     context_dict['request'] = request
     context_dict['userkey_list_uri'] = request.build_absolute_uri(
-      reverse('django_sshkey.views.userkey_list'))
+      reverse('django_sshkey:userkey_list'))
   text_content = render_to_string('sshkey/add_key.txt', context_dict)
   msg = EmailMultiAlternatives(
     settings.SSHKEY_EMAIL_ADD_KEY_SUBJECT,
