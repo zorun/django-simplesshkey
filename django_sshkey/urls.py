@@ -28,12 +28,14 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('django_sshkey.views',
-  url(r'^lookup$', 'lookup'),  # noqa
-  url(r'^$', 'userkey_list'),
-  url(r'^add$', 'userkey_add'),
-  url(r'^(?P<pk>\d+)$', 'userkey_edit'),
-  url(r'^(?P<pk>\d+)/delete$', 'userkey_delete'),
-)
+from . import views
+
+urlpatterns = [
+  url(r'^lookup$', views.lookup),  # noqa
+  url(r'^$', views.userkey_list),
+  url(r'^add$', views.userkey_add),
+  url(r'^(?P<pk>\d+)$', views.userkey_edit),
+  url(r'^(?P<pk>\d+)/delete$', views.userkey_delete),
+]
