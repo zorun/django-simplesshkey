@@ -2,6 +2,8 @@ language: python
 env:
   - TOX_ENV=django18
   - TOX_ENV=django19
+  - TOX_ENV=django110
+  - TOX_ENV=django111
   - TOX_ENV=py33
   - TOX_ENV=py34
   - TOX_ENV=flake8
