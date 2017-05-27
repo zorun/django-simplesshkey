@@ -28,7 +28,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -42,7 +42,7 @@ from django_sshkey import settings
 
 
 class UserKey(models.Model):
-  user = models.ForeignKey(User, db_index=True)
+  user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True)
   name = models.CharField(max_length=50, blank=True)
   key = models.TextField(max_length=2000)
   fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
