@@ -34,7 +34,6 @@ from . import views
 
 app_name = "simplesshkey"
 urlpatterns = [
-  url(r'^lookup$', views.lookup, name='lookup'),  # noqa
   url(r'^$', views.userkey_list, name='userkey_list'),
   url(r'^add$', views.userkey_add, name='userkey_add'),
   url(r'^(?P<pk>\d+)$', views.userkey_edit, name='userkey_edit'),

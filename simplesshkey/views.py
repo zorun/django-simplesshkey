@@ -42,36 +42,6 @@ from simplesshkey.models import UserKey
 from simplesshkey.forms import UserKeyForm
 
 
-@require_http_methods(['GET', 'POST'])
-@csrf_exempt
-def lookup(request):
-    if request.method == 'POST':
-        payload = request.read()
-        key = UserKey.objects.get(id=int(payload))
-        key.touch()
-        return HttpResponse(str(key.last_used), content_type='text/plain')
-    try:
-        fingerprint = request.GET['fingerprint']
-        keys = UserKey.objects.filter(fingerprint=fingerprint)
-    except KeyError:
-        try:
-            username = request.GET['username']
-            keys = UserKey.objects.filter(user__username=username)
-        except KeyError:
-            keys = UserKey.objects.iterator()
-    response = ''
-    for key in keys:
-        if settings.SSHKEY_AUTHORIZED_KEYS_OPTIONS:
-            options = settings.SSHKEY_AUTHORIZED_KEYS_OPTIONS.format(
-                username=key.user.username,
-                key_id=key.id,
-            ) + ' '
-        else:
-            options = ''
-        response += options + key.key + '\n'
-    return HttpResponse(response, content_type='text/plain')
-
-
 @login_required
 @require_GET
 def userkey_list(request):
