@@ -1,3 +1,17 @@
+=====================================
+Release Notes for django-simplesshkey
+=====================================
+
+0.0.0 (2017-06-11)
+------------------
+
+* First release of django-simplesshkey fork.  This release is mostly there to help
+  migration from django-sshkey, see `README.upgrading.rst`.
+* Support Django up to version 1.11.
+* Allow to use a custom user model (settings.AUTH_USER_MODEL) instead of hard-coding
+  the default Django user model.
+
+
 ===============================
 Release Notes for django-sshkey
 ===============================
