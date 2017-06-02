@@ -37,8 +37,8 @@ try:
 except ImportError:
   import datetime
   now = datetime.datetime.now
-from django_sshkey.util import PublicKeyParseError, pubkey_parse
-from django_sshkey import settings
+from simplesshkey.util import PublicKeyParseError, pubkey_parse
+from simplesshkey import settings
 
 
 class UserKey(models.Model):
@@ -135,7 +135,7 @@ def send_email_add_key(sender, instance, **kwargs):
   if request:
     context_dict['request'] = request
     context_dict['userkey_list_uri'] = request.build_absolute_uri(
-      reverse('django_sshkey:userkey_list'))
+      reverse('simplesshkey:userkey_list'))
   text_content = render_to_string('sshkey/add_key.txt', context_dict)
   msg = EmailMultiAlternatives(
     settings.SSHKEY_EMAIL_ADD_KEY_SUBJECT,

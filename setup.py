@@ -1,3 +1,4 @@
+# Copyright (c) 2017, Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -35,19 +36,19 @@ README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-exec(open('django_sshkey/__init__.py').read())
+exec(open('simplesshkey/__init__.py').read())
 
 setup(
-  name='django-sshkey',
+  name='django-simplesshkey',
   version=__version__,  # noqa
-  packages=['django_sshkey'],
+  packages=['simplesshkey'],
   include_package_data=True,
   license='BSD',
-  description='Associates multiple SSH public keys with Django user accounts.',
+  description='Associates multiple SSH public keys with Django user accounts (fork of django-sshkey without SSHD integration)',
   long_description=README,
-  url='https://github.com/ClemsonSoCUnix/django-sshkey',
-  author='Scott Duckworth',
-  author_email='sduckwo@clemson.edu',
+  url='https://github.com/zorun/django-simplesshkey',
+  author='Baptiste Jonglez',
+  author_email='python@bitsofnetworks.org',
   zip_safe=False,
   classifiers=[
     'Environment :: Web Environment',
@@ -64,22 +65,6 @@ setup(
     'Topic :: Internet :: WWW/HTTP',
     'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
   ],
-  scripts=[
-    'django-sshkey-lookup',
-    'django-sshkey-lookup-all',
-    'django-sshkey-lookup-by-username',
-    'django-sshkey-lookup-by-fingerprint',
-  ],
-  entry_points={
-    'console_scripts': [
-      'django-sshkey-pylookup = django_sshkey.util:lookup_main',
-      'django-sshkey-pylookup-all = django_sshkey.util:lookup_all_main',
-      'django-sshkey-pylookup-by-username = '
-        'django_sshkey.util:lookup_by_username_main',
-      'django-sshkey-pylookup-by-fingerprint = '
-        'django_sshkey.util:lookup_by_fingerprint_main',
-    ],
-  },
   install_requires=[
     'pyasn1',
   ],

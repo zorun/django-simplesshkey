@@ -28,7 +28,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from django import forms
-from django_sshkey.models import UserKey
+from simplesshkey.models import UserKey
 
 
 class UserKeyForm(forms.ModelForm):

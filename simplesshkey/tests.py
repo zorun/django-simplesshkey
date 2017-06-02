@@ -32,8 +32,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
 from django.core.urlresolvers import reverse
-from django_sshkey.models import UserKey
-from django_sshkey import settings, util
+from simplesshkey.models import UserKey
+from simplesshkey import settings, util
 import os
 import shutil
 import subprocess
@@ -524,7 +524,7 @@ class UserKeyLookupTestCase(BaseTestCase):
     self.assertEqual(actual, expected)
 
   def test_lookup_all(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     response = self.client.get(url)
     self.assertHasKeys(response, [
       'command="user1 %s" %s' % (
@@ -542,7 +542,7 @@ class UserKeyLookupTestCase(BaseTestCase):
     ])
 
   def test_lookup_by_fingerprint(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     fingerprint = ssh_fingerprint(self.key1_path + '.pub', hash='legacy')
     response = self.client.get(url, {'fingerprint': fingerprint})
     self.assertHasKeys(response, [
@@ -553,7 +553,7 @@ class UserKeyLookupTestCase(BaseTestCase):
     ])
 
   def test_lookup_by_username_single_result(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     username = self.user2.username
     response = self.client.get(url, {'username': username})
     self.assertHasKeys(response, [
@@ -564,7 +564,7 @@ class UserKeyLookupTestCase(BaseTestCase):
     ])
 
   def test_lookup_by_username_multiple_results(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     response = self.client.get(url, {'username': self.user1.username})
     self.assertHasKeys(response, [
       'command="user1 %s" %s' % (
@@ -578,13 +578,13 @@ class UserKeyLookupTestCase(BaseTestCase):
     ])
 
   def test_lookup_nonexist_fingerprint(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     fingerprint = ':'.join(['ff'] * 16)
     response = self.client.get(url, {'fingerprint': fingerprint})
     self.assertHasKeys(response, [])
 
   def test_lookup_nonexist_username(self):
-    url = reverse('django_sshkey:lookup')
+    url = reverse('simplesshkey:lookup')
     response = self.client.get(url, {'username': 'batman'})
     self.assertHasKeys(response, [])
 

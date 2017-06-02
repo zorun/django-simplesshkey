@@ -32,7 +32,7 @@ from django.conf.urls import url
 
 from . import views
 
-app_name = "django_sshkey"
+app_name = "simplesshkey"
 urlpatterns = [
   url(r'^lookup$', views.lookup, name='lookup'),  # noqa
   url(r'^$', views.userkey_list, name='userkey_list'),

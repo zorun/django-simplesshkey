@@ -4,6 +4,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-  url(r'^', include('django_sshkey.urls', namespace='django_sshkey')),
+  url(r'^', include('simplesshkey.urls', namespace='simplesshkey')),
   url(r'^admin/', include(admin.site.urls)),
 ]

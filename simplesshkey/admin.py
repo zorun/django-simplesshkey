@@ -28,7 +28,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 from django.contrib import admin
-from django_sshkey.models import UserKey
+from simplesshkey.models import UserKey
 
 
 def normalize_user_key(modeladmin, request, queryset):
