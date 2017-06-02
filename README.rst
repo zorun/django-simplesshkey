@@ -80,8 +80,7 @@ Settings
 
 ``SSHKEY_ALLOW_EDIT``
   Boolean, defaults to ``False``.  Whether or not editing keys is allowed.
-  Note that no email will be sent in any case when a key is edited, hence the
-  reason that editing keys is disabled by default.  New in version 2.3.
+  New in version 2.3.
 
 ``SSHKEY_DEFAULT_HASH``
   String, either ``sha256``, ``md5``, or ``legacy`` (the default).  The default
@@ -89,20 +88,6 @@ Settings
   behavior enforces OpenSSH's pre-6.8 behavior of MD5 without the ``MD5:``
   prefix.  New in version 2.5.
 
-``SSHKEY_EMAIL_ADD_KEY``
-  Boolean, defaults to ``True``.  Whether or not an email should be sent to the
-  user when a new key is added to their account.  New in version 2.3.
-
-``SSHKEY_EMAIL_ADD_KEY_SUBJECT``
-  String, defaults to ``"A new key was added to your account"``.  The subject of
-  the email that gets sent out when a new key is added.  New in version 2.3.
-
-``SSHKEY_FROM_EMAIL``
-  String, defaults to ``DEFAULT_FROM_EMAIL``.  New in version 2.3.
-
-``SSHKEY_SEND_HTML_EMAIL``
-  Boolean, defaults to ``False``.  Whether or not multipart HTML emails should
-  be sent.  New in version 2.3.
 
 Templates
 ---------
@@ -115,12 +100,6 @@ Example templates are available in the ``templates.example`` directory.
 ``sshkey/userkey_detail.html``
   Used when adding or editing a user's keys.
 
-``sshkey/add_key.txt``
-  The plain text body of the email sent when a new key is added.  New in version
-  2.3.
-
-``sshkey/add_key.html``
-  The HTML body of the email sent when a new key is added.  New in version 2.3.
 
 Management commands
 -------------------

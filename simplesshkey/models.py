@@ -30,15 +30,12 @@
 from django.db import models
 from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 try:
     from django.utils.timezone import now
 except ImportError:
     import datetime
     now = datetime.datetime.now
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
-from simplesshkey import settings
 
 
 class UserKey(models.Model):
@@ -117,32 +114,3 @@ class UserKey(models.Model):
     def touch(self):
         self.last_used = now()
         self.save(update_last_modified=False)
-
-
-@receiver(pre_save, sender=UserKey)
-def send_email_add_key(sender, instance, **kwargs):
-    if not settings.SSHKEY_EMAIL_ADD_KEY or instance.pk:
-        return
-    from django.template.loader import render_to_string
-    from django.core.mail import EmailMultiAlternatives
-    from django.core.urlresolvers import reverse
-    context_dict = {
-        'key': instance,
-        'subject': settings.SSHKEY_EMAIL_ADD_KEY_SUBJECT,
-    }
-    request = getattr(instance, 'request', None)
-    if request:
-        context_dict['request'] = request
-        context_dict['userkey_list_uri'] = request.build_absolute_uri(
-            reverse('simplesshkey:userkey_list'))
-    text_content = render_to_string('sshkey/add_key.txt', context_dict)
-    msg = EmailMultiAlternatives(
-        settings.SSHKEY_EMAIL_ADD_KEY_SUBJECT,
-        text_content,
-        settings.SSHKEY_FROM_EMAIL,
-        [instance.user.email],
-    )
-    if settings.SSHKEY_SEND_HTML_EMAIL:
-        html_content = render_to_string('sshkey/add_key.html', context_dict)
-        msg.attach_alternative(html_content, 'text/html')
-    msg.send()
