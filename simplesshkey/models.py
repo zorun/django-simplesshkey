@@ -36,7 +36,7 @@ from django.utils import timezone
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
 
 
-class UserKey(models.Model):
+class AbstractUserKey(models.Model):
     user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True,
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
@@ -44,6 +44,9 @@ class UserKey(models.Model):
     fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
     def __unicode__(self):
         return unicode(self.user) + u': ' + self.name
@@ -76,3 +79,7 @@ class UserKey(models.Model):
         if f == 'PEM':
             return pubkey.format_pem()
         raise ValueError("Invalid format")
+
+
+class UserKey(AbstractUserKey):
+    pass
