@@ -39,17 +39,11 @@ from simplesshkey.util import PublicKeyParseError, pubkey_parse
 class UserKey(models.Model):
     user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True,
                              on_delete=models.CASCADE)
-    name = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=100, blank=True)
     key = models.TextField(max_length=2000)
     fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    last_modified = models.DateTimeField(null=True)
-    last_used = models.DateTimeField(null=True)
-
-    class Meta:
-        unique_together = [
-            ('user', 'name'),
-        ]
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return unicode(self.user) + u': ' + self.name
@@ -71,29 +65,8 @@ class UserKey(models.Model):
         self.key = pubkey.format_openssh()
         self.fingerprint = pubkey.fingerprint()
         if not self.name:
-            if not pubkey.comment:
-                raise ValidationError('Name or key comment required')
-            self.name = pubkey.comment
-
-    def validate_unique(self, exclude=None):
-        if self.pk is None:
-            objects = type(self).objects
-        else:
-            objects = type(self).objects.exclude(pk=self.pk)
-        if exclude is None or 'name' not in exclude:
-            if objects.filter(user=self.user, name=self.name).count():
-                message = 'You already have a key with that name'
-                raise ValidationError({'name': [message]})
-        if exclude is None or 'key' not in exclude:
-            try:
-                other = objects.get(fingerprint=self.fingerprint, key=self.key)
-                if self.user == other.user:
-                    message = 'You already have that key on file (%s)' % other.name
-                else:
-                    message = 'Somebody else already has that key on file'
-                raise ValidationError({'key': [message]})
-            except type(self).DoesNotExist:
-                pass
+            if pubkey.comment:
+                self.name = pubkey.comment
 
     def export(self, format='RFC4716'):
         pubkey = pubkey_parse(self.key)
@@ -103,12 +76,3 @@ class UserKey(models.Model):
         if f == 'PEM':
             return pubkey.format_pem()
         raise ValueError("Invalid format")
-
-    def save(self, *args, **kwargs):
-        if kwargs.pop('update_last_modified', True):
-            self.last_modified = timezone.now()
-        super(UserKey, self).save(*args, **kwargs)
-
-    def touch(self):
-        self.last_used = timezone.now()
-        self.save(update_last_modified=False)

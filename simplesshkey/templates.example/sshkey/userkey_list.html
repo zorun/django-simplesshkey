@@ -15,7 +15,6 @@
     {% if allow_edit %}
     <th>Last Modified</th>
     {% endif %}
-    <th>Last Used</th>
     <th></th>
   </tr>
 {% for userkey in userkey_list %}
@@ -26,7 +25,6 @@
     {% if allow_edit %}
     <td>{{ userkey.last_modified|default:"unknown" }}</td>
     {% endif %}
-    <td>{{ userkey.last_used|default:"never" }}</td>
     <td>
     {% if allow_edit %}
     <a href="{% url "simplesshkey:userkey_edit" userkey.pk %}">Edit</a>

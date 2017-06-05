@@ -49,7 +49,6 @@ class UserKeyAdmin(admin.ModelAdmin):
         'fingerprint',
         'created',
         'last_modified',
-        'last_used',
     ]
     search_fields = [
         'user__username',
@@ -58,7 +57,6 @@ class UserKeyAdmin(admin.ModelAdmin):
         'fingerprint',
         'created',
         'last_modified',
-        'last_used',
     ]
     actions = [
         normalize_user_key,
