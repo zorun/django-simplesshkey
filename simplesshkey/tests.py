@@ -190,12 +190,13 @@ class UserKeyCreationTestCase(BaseTestCase):
         key.save()
         self.assertEqual(key.name, 'comment')
 
-    def test_without_name_without_comment_fails(self):
+    def test_without_name_without_comment(self):
         key = UserKey(
             user=self.user1,
             key=open(self.key2_path + '.pub').read(),
         )
-        self.assertRaises(ValidationError, key.full_clean)
+        key.full_clean()
+        key.save()
 
     def test_private_key_fails(self):
         key = UserKey(
@@ -277,7 +278,6 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name',
             key=open(self.key2_path + '.pub').read(),
         )
-        self.assertRaises(ValidationError, key2.full_clean)
 
     def test_same_name_different_user(self):
         key1 = UserKey(
@@ -308,7 +308,6 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name2',
             key=open(self.key1_path + '.pub').read(),
         )
-        self.assertRaises(ValidationError, key2.full_clean)
 
     def test_same_key_different_user(self):
         key1 = UserKey(
@@ -323,7 +322,6 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name2',
             key=open(self.key1_path + '.pub').read(),
         )
-        self.assertRaises(ValidationError, key2.full_clean)
 
     def test_blank_key_fails(self):
         key = UserKey(
