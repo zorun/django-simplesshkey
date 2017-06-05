@@ -34,6 +34,15 @@ The goal of this fork is twofolds:
 Of course, if you need all the extra features of django-sshkey, you should
 continue using it!
 
+Migrating from django-sshkey
+============================
+
+If you are using django-sshkey but don't need the extra functionalities, it is
+possible to start using django-simplesshkey and import your data.
+
+The migration process is a bit convoluted, see `README.upgrading.rst` for details.
+
+
 The Django app
 ==============
 
