@@ -31,11 +31,8 @@
 from django.db import models
 from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
-try:
-    from django.utils.timezone import now
-except ImportError:
-    import datetime
-    now = datetime.datetime.now
+from django.utils import timezone
+
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
 
 
@@ -109,9 +106,9 @@ class UserKey(models.Model):
 
     def save(self, *args, **kwargs):
         if kwargs.pop('update_last_modified', True):
-            self.last_modified = now()
+            self.last_modified = timezone.now()
         super(UserKey, self).save(*args, **kwargs)
 
     def touch(self):
-        self.last_used = now()
+        self.last_used = timezone.now()
         self.save(update_last_modified=False)
