@@ -19,7 +19,7 @@ to django-simplesshkey 1.0.0, with Django 1.11.
 
 * Adapt the dump for the new model name:
 
-    sed -ie 's/django_sshkey.userkey/simplesshkey.userkey/' sshkeys.json
+    sed -i -e 's/django_sshkey.userkey/simplesshkey.userkey/' sshkeys.json
 
 * Adapt your code to use django-simplesshkey.  It should be as simple as replacing
   all occurrences of "django_sshkey" by "simplesshkey", but beware of other changes,
@@ -27,7 +27,7 @@ to django-simplesshkey 1.0.0, with Django 1.11.
 
 * Install version 0.0.0 of simplesshkey:
 
-    pip install simplesshkey==0.0.0
+    pip install django-simplesshkey==0.0.0
 
 * Remove "django_sshkey" from INSTALLED_APPS and add "simplesshkey" instead.
 
@@ -41,7 +41,7 @@ to django-simplesshkey 1.0.0, with Django 1.11.
 
 * Install the latest version of simplesshkey:
 
-    pip install --upgrade simplesshkey
+    pip install --upgrade django-simplesshkey
 
 * Run the remaining migrations:
 
