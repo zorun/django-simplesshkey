@@ -52,7 +52,6 @@ class UserKey(models.Model):
     last_used = models.DateTimeField(null=True)
 
     class Meta:
-        db_table = 'sshkey_userkey'
         unique_together = [
             ('user', 'name'),
         ]
