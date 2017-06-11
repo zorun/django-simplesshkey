@@ -2,6 +2,16 @@
 Release Notes for django-simplesshkey
 =====================================
 
+1.0.0 (2017-06-12)
+------------------
+
+* Remove integration with OpenSSH server: key lookup, scripts, etc.
+* Stop sending emails when SSH keys are added or modified.  It's much
+  more flexible to do this directly in the application that uses
+  django-simplesshkey, using signals.
+* Impose less constraints on the SSH keys: allow duplicate keys, keys without name...
+* Allow to subclass the UserKey model: can be useful to override some fields.
+
 0.0.0 (2017-06-11)
 ------------------
 
