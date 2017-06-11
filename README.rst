@@ -5,7 +5,7 @@ django-simplesshkey
 django-simplesshkey allows you to associate multiple SSH public keys with Django
 user accounts.  It provides views to list, add, edit, and delete keys, each of
 which is intended for end-user consumption.  Of course, you can also manage SSH keys
-from the administration itnerface.
+from the administration interface.
 
 SSH keys are simply stored in the Django database, and what you do with them is
 up to you: you can have a cron job that regularly dumps SSH keys to files, or
@@ -116,4 +116,4 @@ Management commands
   request could end up timing out.
 
 
-.. _djangosshkey: https://github.com/ClemsonSoCUnix/django-sshkey
+.. _django-sshkey: https://github.com/ClemsonSoCUnix/django-sshkey
