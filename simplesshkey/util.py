@@ -93,7 +93,10 @@ class PublicKey(object):
             dlen = struct.unpack('>I', keydata[:4])[0]
             data, keydata = keydata[4:4 + dlen], keydata[4 + dlen:]
             self.parts.append(data)
-        self.algorithm = self.parts[0].decode('ascii')
+        try:
+            self.algorithm = self.parts[0].decode('ascii')
+        except UnicodeDecodeError as e:
+            raise TypeError(str(e))
 
     def fingerprint(self, hash=None):
         import hashlib
