@@ -2,6 +2,11 @@
 Release Notes for django-simplesshkey
 =====================================
 
+1.0.1 (2017-06-15)
+------------------
+
+* Don't crash when parsing malformed SSH key.
+
 1.0.0 (2017-06-12)
 ------------------
 
