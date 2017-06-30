@@ -47,9 +47,8 @@ def normalize_user_key(modeladmin, request, queryset):
 
 class UserKeyAdmin(admin.ModelAdmin):
     list_display = [
-        '__unicode__',
-        'user',
         'name',
+        'user',
         'fingerprint',
         'created',
         'last_modified',
