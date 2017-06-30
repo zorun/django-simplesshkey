@@ -364,6 +364,16 @@ class UserKeyCreationTestCase(BaseTestCase):
         )
         self.assertRaises(ValidationError, key.full_clean)
 
+    def test_empty_key(self):
+        key = UserKey(
+            user=self.user1,
+            name='',
+            key='',
+        )
+        key.full_clean(exclude=['key'])
+        key.save()
+        self.assertEqual(key.key, '')
+
 
 class RFC4716TestCase(BaseTestCase):
 
