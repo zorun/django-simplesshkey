@@ -32,7 +32,6 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
-from django.core.urlresolvers import reverse
 from simplesshkey.models import UserKey
 from simplesshkey import settings, util
 import os
@@ -278,6 +277,8 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name',
             key=open(self.key2_path + '.pub').read(),
         )
+        key2.full_clean()
+        key2.save()
 
     def test_same_name_different_user(self):
         key1 = UserKey(
@@ -308,6 +309,8 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name2',
             key=open(self.key1_path + '.pub').read(),
         )
+        key2.full_clean()
+        key2.save()
 
     def test_same_key_different_user(self):
         key1 = UserKey(
@@ -322,6 +325,8 @@ class UserKeyCreationTestCase(BaseTestCase):
             name='name2',
             key=open(self.key1_path + '.pub').read(),
         )
+        key2.full_clean()
+        key2.save()
 
     def test_blank_key_fails(self):
         key = UserKey(

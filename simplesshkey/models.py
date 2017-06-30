@@ -31,7 +31,6 @@
 from django.db import models
 from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
-from django.utils import timezone
 
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
 

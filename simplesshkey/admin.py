@@ -62,4 +62,5 @@ class UserKeyAdmin(admin.ModelAdmin):
         normalize_user_key,
     ]
 
+
 admin.site.register(UserKey, UserKeyAdmin)
