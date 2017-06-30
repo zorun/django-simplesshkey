@@ -2,6 +2,12 @@
 Release Notes for django-simplesshkey
 =====================================
 
+1.0.2 (2017-06-30)
+------------------
+
+* Ensure consistent unicode behaviour between python2 and python3.
+* Minor admin improvement.
+
 1.0.1 (2017-06-15)
 ------------------
 
