@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright (c) 2017, Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
@@ -28,6 +30,9 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+from __future__ import unicode_literals
+
+from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
@@ -35,6 +40,7 @@ from django.core.exceptions import ValidationError
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
 
 
+@python_2_unicode_compatible
 class AbstractUserKey(models.Model):
     user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True,
                              on_delete=models.CASCADE)
@@ -47,8 +53,8 @@ class AbstractUserKey(models.Model):
     class Meta:
         abstract = True
 
-    def __unicode__(self):
-        return unicode(self.user) + u': ' + self.name
+    def __str__(self):
+        return '{}: {}'.format(self.user, self.name)
 
     def clean_fields(self, exclude=None):
         if not exclude or 'key' not in exclude:

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -26,6 +28,8 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+
+from __future__ import unicode_literals
 
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
