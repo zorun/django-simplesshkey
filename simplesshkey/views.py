@@ -38,7 +38,7 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.http import is_safe_url
 from simplesshkey import settings
 from simplesshkey.models import UserKey
