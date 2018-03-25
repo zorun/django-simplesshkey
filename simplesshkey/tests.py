@@ -375,6 +375,74 @@ class UserKeyCreationTestCase(BaseTestCase):
         self.assertEqual(key.key, '')
 
 
+class KeyTypeTestCase(BaseTestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        super(KeyTypeTestCase, cls).setUpClass()
+        cls.user1 = User.objects.create(username='user1')
+        # key1: DSA
+        cls.key1_path = os.path.join(cls.key_dir, 'key1')
+        ssh_keygen(type='dsa', comment='DSA key', file=cls.key1_path)
+        # key2: RSA
+        cls.key2_path = os.path.join(cls.key_dir, 'key2')
+        ssh_keygen(type='rsa', comment='RSA key', file=cls.key2_path)
+        # key3: ecdsa
+        cls.key3_path = os.path.join(cls.key_dir, 'key3')
+        ssh_keygen(type='ecdsa', comment='ecdsa key', file=cls.key3_path)
+        # key4: ed25519
+        cls.key4_path = os.path.join(cls.key_dir, 'key4')
+        ssh_keygen(type='ed25519', comment='ed25519 key', file=cls.key4_path)
+
+    @classmethod
+    def tearDownClass(cls):
+        User.objects.all().delete()
+        super(KeyTypeTestCase, cls).tearDownClass()
+
+    def tearDown(self):
+        UserKey.objects.all().delete()
+
+    def test_dsa(self):
+        key = UserKey(
+            user=self.user1,
+            name='name',
+            key=open(self.key1_path + '.pub').read(),
+        )
+        key.full_clean()
+        key.save()
+        self.assertEqual(key.keytype, 'ssh-dss')
+
+    def test_rsa(self):
+        key = UserKey(
+            user=self.user1,
+            name='name',
+            key=open(self.key2_path + '.pub').read(),
+        )
+        key.full_clean()
+        key.save()
+        self.assertEqual(key.keytype, 'ssh-rsa')
+
+    def test_ecdsa(self):
+        key = UserKey(
+            user=self.user1,
+            name='name',
+            key=open(self.key3_path + '.pub').read(),
+        )
+        key.full_clean()
+        key.save()
+        self.assertEqual(key.keytype, 'ecdsa-sha2-nistp256')
+
+    def test_ed25519(self):
+        key = UserKey(
+            user=self.user1,
+            name='name',
+            key=open(self.key4_path + '.pub').read(),
+        )
+        key.full_clean()
+        key.save()
+        self.assertEqual(key.keytype, 'ssh-ed25519')
+
+
 class RFC4716TestCase(BaseTestCase):
 
     @classmethod

@@ -102,6 +102,9 @@ class PublicKey(object):
         except UnicodeDecodeError as e:
             raise TypeError(str(e))
 
+    def keytype(self):
+        return self.algorithm
+
     def fingerprint(self, hash=None):
         import hashlib
         if hash is None:

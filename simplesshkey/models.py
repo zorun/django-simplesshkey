@@ -46,6 +46,7 @@ class AbstractUserKey(models.Model):
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
     key = models.TextField(max_length=2000)
+    keytype = models.CharField(max_length=32, blank=True, help_text="Type of key, e.g. 'ssh-rsa'")
     fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -54,7 +55,7 @@ class AbstractUserKey(models.Model):
         abstract = True
 
     def __str__(self):
-        return '{}: {}'.format(self.user, self.name)
+        return '{}: {} [{}]'.format(self.user, self.name, self.keytype)
 
     def clean_fields(self, exclude=None):
         if not exclude or 'key' not in exclude:
@@ -71,6 +72,7 @@ class AbstractUserKey(models.Model):
         except PublicKeyParseError as e:
             raise ValidationError(str(e))
         self.key = pubkey.format_openssh()
+        self.keytype = pubkey.keytype()
         self.fingerprint = pubkey.fingerprint()
         if not self.name:
             if pubkey.comment:

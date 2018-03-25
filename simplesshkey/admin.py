@@ -57,6 +57,7 @@ class UserKeyAdmin(admin.ModelAdmin):
         'user__username',
     ]
     readonly_fields = [
+        'keytype',
         'fingerprint',
         'created',
         'last_modified',
