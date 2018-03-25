@@ -2,6 +2,11 @@
 Release Notes for django-simplesshkey
 =====================================
 
+1.1.0 (2018-03-25)
+------------------
+
+* Add a new field "keytype" (e.g. "ssh-rsa").
+
 1.0.3 (2018-01-08)
 ------------------
 
