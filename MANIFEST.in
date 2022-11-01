@@ -3,5 +3,4 @@ include README.rst
 include README.upgrading.rst
 include RELEASE-NOTES.rst
 recursive-include simplesshkey/migrations *.py
-recursive-include simplesshkey/south_migrations *.py
 recursive-include simplesshkey/templates.example *

@@ -38,9 +38,6 @@ INSTALLED_APPS = (
     'simplesshkey',
 )
 
-if django.VERSION < (1, 7):
-    INSTALLED_APPS += ('south',)
-
 MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
