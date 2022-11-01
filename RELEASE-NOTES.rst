@@ -2,6 +2,12 @@
 Release Notes for django-simplesshkey
 =====================================
 
+2.0.0 (2022-11-01)
+------------------
+
+* Add support for Django 3.2
+* Drop support for Django < 3.0
+
 1.1.0 (2018-03-25)
 ------------------
 
