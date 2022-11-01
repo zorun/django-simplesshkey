@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2017, Baptiste Jonglez
+# Copyright (c) 2017, 2022, Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -32,7 +32,6 @@
 
 from __future__ import unicode_literals
 
-from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings as django_settings
 from django.core.exceptions import ValidationError
@@ -40,7 +39,6 @@ from django.core.exceptions import ValidationError
 from simplesshkey.util import PublicKeyParseError, pubkey_parse
 
 
-@python_2_unicode_compatible
 class AbstractUserKey(models.Model):
     user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True,
                              on_delete=models.CASCADE)

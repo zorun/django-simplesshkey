@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2017, Baptiste Jonglez
+# Copyright (c) 2017, 2022, Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -39,7 +39,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.urls import reverse
-from django.utils.http import is_safe_url
+from django.utils.http import url_has_allowed_host_and_scheme
 from simplesshkey import settings
 from simplesshkey.models import UserKey
 from simplesshkey.forms import UserKeyForm
@@ -66,7 +66,10 @@ def userkey_add(request):
             form.save()
             default_redirect = reverse('simplesshkey:userkey_list')
             url = request.GET.get('next', default_redirect)
-            if not is_safe_url(url=url, host=request.get_host()):
+            if not url_has_allowed_host_and_scheme(
+                    url=url,
+                    allowed_hosts=[request.get_host()],
+            ):
                 url = default_redirect
             message = 'SSH public key %s was added.' % userkey.name
             messages.success(request, message, fail_silently=True)
@@ -91,7 +94,10 @@ def userkey_edit(request, pk):
             form.save()
             default_redirect = reverse('simplesshkey:userkey_list')
             url = request.GET.get('next', default_redirect)
-            if not is_safe_url(url=url, host=request.get_host()):
+            if not url_has_allowed_host_and_scheme(
+                    url=url,
+                    allowed_hosts=[request.get_host()],
+            ):
                 url = default_redirect
             message = 'SSH public key %s was saved.' % userkey.name
             messages.success(request, message, fail_silently=True)
