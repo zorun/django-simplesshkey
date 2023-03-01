@@ -32,7 +32,9 @@
 
 from __future__ import unicode_literals
 
-from django.conf.urls import url
+# updating to django 4.x
+# from django.conf.urls import url
+from django.urls import re_path as url
 
 from . import views
 

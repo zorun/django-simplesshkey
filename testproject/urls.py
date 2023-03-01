@@ -1,4 +1,7 @@
-from django.conf.urls import include, url
+# updating to django 4.x
+# from django.conf.urls import include, url
+from django.urls import include, re_path as url
+
 
 from django.contrib import admin
 admin.autodiscover()
