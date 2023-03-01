@@ -118,3 +118,11 @@ def userkey_delete(request, pk):
     message = 'SSH public key %s was deleted.' % userkey.name
     messages.success(request, message, fail_silently=True)
     return HttpResponseRedirect(reverse('simplesshkey:userkey_list'))
+
+
+@login_required
+@require_GET
+def raw_keys(request):
+    userkey_list = UserKey.objects.filter(user=request.user)
+    return render(request, 'sshkey/raw_keys.html',
+                  context={'userkey_list': userkey_list})

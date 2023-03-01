@@ -44,4 +44,5 @@ urlpatterns = [
   url(r'^add$', views.userkey_add, name='userkey_add'),
   url(r'^(?P<pk>\d+)$', views.userkey_edit, name='userkey_edit'),
   url(r'^(?P<pk>\d+)/delete$', views.userkey_delete, name='userkey_delete'),
+  url(r'^rawkeys', views.raw_keys, name='raw_keys')
 ]
