@@ -1,12 +1,4 @@
-<body>
-<p>
-<table>
-  {% for userkey in userkey_list %}
-  <tr>
-    <td><pre>{{ userkey.key }}</pre></td>
-    </td>
-  </tr>
+{{ content|safe }}
+{% for userkey in userkey_list %}
+{{ userkey.key }}
 {% endfor %}
-</table>
-</p>
-</body>

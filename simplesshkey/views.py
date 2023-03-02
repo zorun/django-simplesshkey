@@ -43,6 +43,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from simplesshkey import settings
 from simplesshkey.models import UserKey
 from simplesshkey.forms import UserKeyForm
+from django.contrib.auth.models import User
 
 
 @login_required
@@ -120,9 +121,9 @@ def userkey_delete(request, pk):
     return HttpResponseRedirect(reverse('simplesshkey:userkey_list'))
 
 
-@login_required
 @require_GET
-def raw_keys(request):
-    userkey_list = UserKey.objects.filter(user=request.user)
+def raw_keys(request, username):
+    user_id = User.objects.get(username=username)
+    userkey_list = UserKey.objects.filter(user_id=user_id)
     return render(request, 'sshkey/raw_keys.html',
                   context={'userkey_list': userkey_list})
