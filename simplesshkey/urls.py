@@ -32,14 +32,14 @@
 
 from __future__ import unicode_literals
 
-from django.conf.urls import url
+from django.urls import re_path
 
 from . import views
 
 app_name = "simplesshkey"
 urlpatterns = [
-  url(r'^$', views.userkey_list, name='userkey_list'),
-  url(r'^add$', views.userkey_add, name='userkey_add'),
-  url(r'^(?P<pk>\d+)$', views.userkey_edit, name='userkey_edit'),
-  url(r'^(?P<pk>\d+)/delete$', views.userkey_delete, name='userkey_delete'),
+  re_path(r'^$', views.userkey_list, name='userkey_list'),
+  re_path(r'^add$', views.userkey_add, name='userkey_add'),
+  re_path(r'^(?P<pk>\d+)$', views.userkey_edit, name='userkey_edit'),
+  re_path(r'^(?P<pk>\d+)/delete$', views.userkey_delete, name='userkey_delete'),
 ]
