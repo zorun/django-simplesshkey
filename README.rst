@@ -11,7 +11,7 @@ SSH keys are simply stored in the Django database, and what you do with them is
 up to you: you can have a cron job that regularly dumps SSH keys to files, or
 connect a signal to take an action each time a SSH key is saved...
 For instance, the author `uses Ansible to deploy the SSH keys to several machines
-https://framagit.org/compile-farm/gccfarm`_.
+<https://framagit.org/compile-farm/gccfarm>`_.
 
 
 About django-sshkey and django-simplesshkey
