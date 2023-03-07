@@ -1,4 +1,4 @@
-# Copyright (c) 2017, 2022, Baptiste Jonglez
+# Copyright (c) 2017-2023 Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -28,4 +28,4 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-__version__ = '2.0.0'
+__version__ = '2.1.0'

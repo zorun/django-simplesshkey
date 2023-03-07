@@ -2,6 +2,13 @@
 Release Notes for django-simplesshkey
 =====================================
 
+2.1.0 (2023-03-07)
+------------------
+
+* Add support for Django 4.0, 4.1, 4.2
+* Add CI with linter and tests
+* Remove unused setting ``SSHKEY_AUTHORIZED_KEYS_OPTIONS`` (leftover from fork)
+
 2.0.0 (2022-11-01)
 ------------------
 
