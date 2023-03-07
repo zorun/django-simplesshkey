@@ -44,7 +44,8 @@ class AbstractUserKey(models.Model):
                              on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True)
     key = models.TextField(max_length=2000)
-    keytype = models.CharField(max_length=32, blank=True, help_text="Type of key, e.g. 'ssh-rsa'")
+    keytype = models.CharField(max_length=32, blank=True,
+                               help_text="Type of key, e.g. 'ssh-rsa'")
     fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

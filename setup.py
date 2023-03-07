@@ -31,40 +31,45 @@
 import os
 from setuptools import setup
 
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+README = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
 
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
-exec(open('simplesshkey/__init__.py').read())
+exec(open("simplesshkey/__init__.py").read())
 
 setup(
-  name='django-simplesshkey',
-  version=__version__,  # noqa
-  packages=['simplesshkey'],
-  include_package_data=True,
-  license='BSD',
-  description='Associates multiple SSH public keys with Django user accounts (fork of django-sshkey without SSHD integration)',
-  long_description=README,
-  url='https://github.com/zorun/django-simplesshkey',
-  author='Baptiste Jonglez',
-  author_email='python@bitsofnetworks.org',
-  zip_safe=False,
-  classifiers=[
-    'Environment :: Web Environment',
-    'Framework :: Django',
-    'Intended Audience :: Developers',
-    'License :: OSI Approved :: BSD License',
-    'Operating System :: OS Independent',
-    'Programming Language :: Python',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
-    'Programming Language :: Python :: 3.9',
-    'Topic :: Internet :: WWW/HTTP',
-    'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
-  ],
-  install_requires=[
-    'pyasn1',
-  ],
+    name="django-simplesshkey",
+    version=__version__,  # noqa
+    packages=["simplesshkey"],
+    include_package_data=True,
+    license="BSD",
+    description=(
+        "Associates multiple SSH public keys with Django user accounts "
+        "(fork of django-sshkey without SSHD integration)"
+    ),
+    long_description=README,
+    url="https://github.com/zorun/django-simplesshkey",
+    author="Baptiste Jonglez",
+    author_email="python@bitsofnetworks.org",
+    zip_safe=False,
+    classifiers=[
+        "Environment :: Web Environment",
+        "Framework :: Django",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    ],
+    install_requires=[
+        "pyasn1",
+    ],
 )

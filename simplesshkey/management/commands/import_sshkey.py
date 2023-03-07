@@ -73,7 +73,7 @@ class Command(BaseCommand):
 
             try:
                 self._clean_key(key_model, options)
-            except:
+            except:  # noqa
                 self.stdout.write('Failed to import %s' % key)
                 raise
             else:
