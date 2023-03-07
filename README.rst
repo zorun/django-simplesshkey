@@ -10,7 +10,8 @@ from the administration interface.
 SSH keys are simply stored in the Django database, and what you do with them is
 up to you: you can have a cron job that regularly dumps SSH keys to files, or
 connect a signal to take an action each time a SSH key is saved...
-For instance, the author uses ansible to deploy the SSH keys to several machines.
+For instance, the author `uses Ansible to deploy the SSH keys to several machines
+https://framagit.org/compile-farm/gccfarm`_.
 
 
 About django-sshkey and django-simplesshkey
@@ -70,20 +71,15 @@ mapping.
 Settings
 --------
 
-``SSHKEY_AUTHORIZED_KEYS_OPTIONS``
-  String, optional.  Defines the SSH options that will be prepended to each
-  public key.  ``{username}`` will be replaced by the username; ``{key_id}``
-  will be replaced by the key's id.  New in version 2.3.
-
 ``SSHKEY_ALLOW_EDIT``
   Boolean, defaults to ``False``.  Whether or not editing keys is allowed.
-  New in version 2.3.
 
 ``SSHKEY_DEFAULT_HASH``
   String, either ``sha256``, ``md5``, or ``legacy`` (the default).  The default
-  hash algorithm to use for calculating the finger print of keys.  Legacy
-  behavior enforces OpenSSH's pre-6.8 behavior of MD5 without the ``MD5:``
-  prefix.  New in version 2.5.
+  hash algorithm to use for calculating the fingerprint of keys.  The resulting
+  hash is stored in the ``fingerprint`` field of each SSH key object.
+  Legacy behavior enforces OpenSSH's pre-6.8 behavior of MD5 without the ``MD5:``
+  prefix.
 
 
 Templates
