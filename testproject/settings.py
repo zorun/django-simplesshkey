@@ -7,10 +7,12 @@ https://docs.djangoproject.com/en/1.6/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
-import django
+
+import getpass
+import os
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -102,7 +104,5 @@ TEMPLATES = [
     },
 ]
 
-import getpass
-import socket
 DEFAULT_FROM_EMAIL = '%s@%s' % (getpass.getuser(), socket.gethostname())
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
