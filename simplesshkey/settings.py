@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2017, Baptiste Jonglez
+# Copyright (c) 2017-2023 Baptiste Jonglez
 # Copyright (c) 2014-2016, Clemson University
 # All rights reserved.
 #
@@ -32,8 +32,6 @@
 
 from django.conf import settings
 
-SSHKEY_AUTHORIZED_KEYS_OPTIONS = getattr(
-    settings, 'SSHKEY_AUTHORIZED_KEYS_OPTIONS', None)
 SSHKEY_ALLOW_EDIT = getattr(
     settings, 'SSHKEY_ALLOW_EDIT', False)
 SSHKEY_DEFAULT_HASH = getattr(
