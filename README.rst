@@ -47,7 +47,7 @@ The migration process is a bit convoluted, see `README.upgrading.rst` for detail
 The Django app
 ==============
 
-To use django-sshkey in your Django project, simply add ``django_sshkey`` to
+To use django-sshkey in your Django project, you need to add ``simplesshkey`` to
 ``INSTALLED_APPS`` in ``settings.py``, map the URLs into your project, and
 provide templates for the views (example templates are provided in the source).
 
