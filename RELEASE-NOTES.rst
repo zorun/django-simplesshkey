@@ -5,6 +5,7 @@ Release Notes for django-simplesshkey
 2.2.0 (2025-06-30)
 ------------------
 
+* Increase maximum length of SSH key type
 * Add support for Django 5.0, 5.1, 5.2
 * Add support for Python 3.12, 3.13
 * Stop automated testing against obsolete Django versions (< 4.2)
