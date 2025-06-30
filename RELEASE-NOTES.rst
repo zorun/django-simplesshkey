@@ -2,6 +2,13 @@
 Release Notes for django-simplesshkey
 =====================================
 
+2.2.0 (2025-06-30)
+------------------
+
+* Add support for Django 5.0, 5.1, 5.2
+* Add support for Python 3.12, 3.13
+* Stop automated testing against obsolete Django versions (< 4.2)
+
 2.1.0 (2023-03-07)
 ------------------
 
