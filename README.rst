@@ -14,41 +14,22 @@ For instance, the author `uses Ansible to deploy the SSH keys to several machine
 <https://framagit.org/compile-farm/gccfarm>`_.
 
 
-About django-sshkey and django-simplesshkey
-===========================================
+Compatibility
+=============
 
-`django-simplesshkey` is a fork of django-sshkey_, based on version 2.5.0.
+django-simplesshkey is a pretty simple application and has wide version compatibility:
 
-The goal of this fork is twofolds:
+- Python 3.6 to 3.13
+- Django 3.0 to 5.2 (and probably more recent versions too)
 
-* Keep only basic functionalities needed to manage SSH keys linked to Django
-  users.  In particular, the optional integration with OpenSSH has been
-  completely removed, which simplifies configuration and avoids leaking
-  information by default (public lookup view).  Also, sending emails when
-  keys are added or modified is no longer done, because it can easily be
-  implemented outside of this application.
-
-* Be more flexible: impose less constraints on the model (no unicity),
-  allow to override some fields of the model or form.  Also, sending emails
-  outside of this application obviously allows more flexibility.
-
-Of course, if you need all the extra features of django-sshkey, you should
-continue using it!
-
-Migrating from django-sshkey
-============================
-
-If you are using django-sshkey but don't need the extra functionalities, it is
-possible to start using django-simplesshkey and import your data.
-
-The migration process is a bit convoluted, see `README.upgrading.rst` for details.
+Note however that we only run automated tests against supported versions of Django (4.2 to 5.2 currently).
 
 
 The Django app
 ==============
 
-To use django-sshkey in your Django project, you need to add ``simplesshkey`` to
-``INSTALLED_APPS`` in ``settings.py``, map the URLs into your project, and
+To use django-simplesshkey in your Django project, you need to add ``simplesshkey``
+to ``INSTALLED_APPS`` in ``settings.py``, map the URLs into your project, and
 provide templates for the views (example templates are provided in the source).
 
 
@@ -110,6 +91,39 @@ Management commands
   those owned by a user, or a particular key of a user.  This can also be done
   via the administration panel, but if you have a large key database the
   request could end up timing out.
+
+
+History
+=======
+
+About django-sshkey and django-simplesshkey
+-------------------------------------------
+
+`django-simplesshkey` is a fork of django-sshkey_, based on version 2.5.0.
+
+The goal of this fork is twofolds:
+
+* Keep only basic functionalities needed to manage SSH keys linked to Django
+  users.  In particular, the optional integration with OpenSSH has been
+  completely removed, which simplifies configuration and avoids leaking
+  information by default (public lookup view).  Also, sending emails when
+  keys are added or modified is no longer done, because it can easily be
+  implemented outside of this application.
+
+* Be more flexible: impose less constraints on the model (no unicity),
+  allow to override some fields of the model or form.  Also, sending emails
+  outside of this application obviously allows more flexibility.
+
+Of course, if you need all the extra features of django-sshkey, you should
+continue using it!
+
+Migrating from django-sshkey
+----------------------------
+
+If you are using django-sshkey but don't need the extra functionalities, it is
+possible to start using django-simplesshkey and import your data.
+
+The migration process is a bit convoluted, see `README.upgrading.rst` for details.
 
 
 .. _django-sshkey: https://github.com/ClemsonSoCUnix/django-sshkey
