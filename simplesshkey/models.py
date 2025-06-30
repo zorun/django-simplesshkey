@@ -42,9 +42,9 @@ from simplesshkey.util import PublicKeyParseError, pubkey_parse
 class AbstractUserKey(models.Model):
     user = models.ForeignKey(django_settings.AUTH_USER_MODEL, db_index=True,
                              on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, blank=True)
+    name = models.CharField(max_length=256, blank=True)
     key = models.TextField(max_length=2000)
-    keytype = models.CharField(max_length=32, blank=True,
+    keytype = models.CharField(max_length=512, blank=True,
                                help_text="Type of key, e.g. 'ssh-rsa'")
     fingerprint = models.CharField(max_length=128, blank=True, db_index=True)
     created = models.DateTimeField(auto_now_add=True)
